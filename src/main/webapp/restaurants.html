@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBuddy - Restaurants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-light bg-white shadow-sm sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-danger fs-3 italic-brand" href="index.html">BiteBuddy</a>
+            <span id="locationBadge" class="badge bg-dark px-3 py-2 fs-6">📍 Loading location...</span>
+        </div>
+    </nav>
+    <div class="container mt-4">
+
+    <div class="input-group shadow">
+
+        <span class="input-group-text bg-white border-end-0">
+            🔍
+        </span>
+
+        <input
+            type="text"
+            id="searchBox"
+            class="form-control border-start-0"
+            placeholder="Search restaurants or food..."
+            onkeyup="searchRestaurant()">
+
+    </div>
+
+</div>
+
+    <section class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 20px;">
+    <h2 style="margin: 0;">Inspiration for your first order</h2>
+    
+      <div style="display: inline-flex; align-items: center; gap: 12px; float: right; margin-top: 5px;">
+    
+    <!-- 1. Curved Home Button -->
+    <a href="index.html" style="text-decoration: none; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2); transition: background 0.2s;">
+        🏠 Home
+    </a>
+
+    <!-- 2. Original Curved View Basket Button -->
+    <a href="viewCart.jsp" style="text-decoration: none; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2); transition: background 0.2s;">
+        🛒 View Basket
+    </a>
+
+    <!-- 3. Curved Login Button -->
+    <a href="login.html" style="text-decoration: none; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2); transition: background 0.2s;">
+        🔑 Login
+    </a>
+
+    <!-- 4. Curved Sign Up Button -->
+    <a href="register.html" style="text-decoration: none; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2); transition: background 0.2s;">
+        👤 Sign Up
+    </a>
+    <a href="MyOrders.jsp"
+style="text-decoration:none;
+background:#ff4757;
+color:white;
+padding:10px 20px;
+border-radius:50px;
+font-weight:600;
+font-size:14px;
+box-shadow:0 4px 10px rgba(255,71,87,.2);">
+
+📦 My Orders
+
+</a>
+
+</div>
+</div>
+        <div class="d-flex gap-5 text-center overflow-auto pb-3">
+            <div class="category-card" data-category="biryani" onclick="openCategory(this)">
+
+    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=150">
+
+    <p class="mt-2 fw-semibold">
+        biryani
+    </p>
+
+</div>
+<div class="category-card" data-category="pizza" onclick="openCategory(this)">
+
+    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=150">
+
+    <p class="mt-2 fw-semibold">
+        pizza
+    </p>
+
+</div>
+           <div class="category-card" data-category="burger" onclick="openCategory(this)">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=150">
+    <p class="mt-2 fw-semibold">
+        burger
+    </p>
+
+</div>
+<div class="category-card" data-category="thali" onclick="openCategory(this)">
+
+    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=150">
+
+    <p class="mt-2 fw-semibold">
+        thali
+    </p>
+
+</div>
+        </div>
+    </section>
+
+    <section class="container my-4">
+        <div class="d-flex align-items-center justify-content-between bg-white p-3 rounded-3 shadow-sm">
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary rounded-2">Rating: 4.0+</button>
+                <button class="btn btn-sm btn-outline-secondary rounded-2">Offers Available</button>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="vegToggle">
+                <label class="form-check-label fw-bold text-success" for="vegToggle">Pure Veg Mode</label>
+            </div>
+        </div>
+    </section>
+
+    <main class="container my-4">
+        <h3 class="fw-bold mb-4">Trending Food Outlets</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="restaurantGrid">
+    
+    <div class="col" onclick="openRestaurant('The O\'rica Fine Dining')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500" class="card-img-top" height="220" alt="North Indian Food">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">30% OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">The O'rica Fine Dining</h5>
+                    <span class="badge bg-success px-2 py-1">4.1 ★</span>
+                </div>
+                <p class="text-muted small mb-3">North Indian, Chinese, Biryani</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹300 for one</span>
+                    <span class="text-danger">28 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col" onclick="openRestaurant('KFC')">
+    <div class="card h-100 border-0 shadow-sm restaurant-card">
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=500" class="card-img-top" height="220" alt="KFC">
+            <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">30% OFF</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title fw-bold mb-0">KFC</h5>
+                <span class="badge bg-success px-2 py-1">4.4 ★</span>
+            </div>
+            <p class="text-muted small mb-3">Fried Chicken, Burgers</p>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                <span>₹260 for one</span>
+                <span class="text-danger">28 mins</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="col" onclick="openRestaurant('Pakashala')">
+    <div class="card h-100 border-0 shadow-sm restaurant-card">
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500" class="card-img-top" height="220" alt="Pakashala">
+            <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">15% OFF</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title fw-bold mb-0">Pakashala</h5>
+                <span class="badge bg-success px-2 py-1">4.4 ★</span>
+            </div>
+            <p class="text-muted small mb-3">South Indian, Meals</p>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                <span>₹180 for one</span>
+                <span class="text-danger">18 mins</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="col" onclick="openRestaurant('Meghana Foods')">
+    <div class="card h-100 border-0 shadow-sm restaurant-card">
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500" class="card-img-top" height="220" alt="Meghana Foods">
+            <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">20% OFF</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title fw-bold mb-0">Meghana Foods</h5>
+                <span class="badge bg-success px-2 py-1">4.7 ★</span>
+            </div>
+            <p class="text-muted small mb-3">Biryani, Kebabs, Indian</p>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                <span>₹300 for one</span>
+                <span class="text-danger">30 mins</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="col" onclick="openRestaurant('Kathi Junction')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=500" class="card-img-top" height="220" alt="Rolls">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">10% OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">Kathi Junction</h5>
+                    <span class="badge bg-success px-2 py-1">4.0 ★</span>
+                </div>
+                <p class="text-muted small mb-3">Rolls, Fast Food, Shawarma</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹250 for one</span>
+                    <span class="text-danger">18 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col" onclick="openRestaurant('Burger King')">
+    <div class="card h-100 border-0 shadow-sm restaurant-card">
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" class="card-img-top" height="220" alt="Burger King">
+            <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">25% OFF</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title fw-bold mb-0">Burger King</h5>
+                <span class="badge bg-success px-2 py-1">4.3 ★</span>
+            </div>
+            <p class="text-muted small mb-3">Burgers, Fries, Beverages</p>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                <span>₹220 for one</span>
+                <span class="text-danger">22 mins</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="col" onclick="openRestaurant('Shree Naivedyam')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500" class="card-img-top" height="220" alt="Thali">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">20% OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">Shree Naivedyam</h5>
+                    <span class="badge bg-success px-2 py-1">4.3 ★</span>
+                </div>
+                <p class="text-muted small mb-3">Pure Veg, South Indian, Thali</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹400 for one</span>
+                    <span class="text-danger">25 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" onclick="openRestaurant('Dino\'s Pizza')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" class="card-img-top" height="220" alt="Pizza">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">30% OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">Dino's Pizza</h5>
+                    <span class="badge bg-success px-2 py-1">3.9 ★</span>
+                </div>
+                <p class="text-muted small mb-3">Pizza, Fast Food, Desserts</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹150 for one</span>
+                    <span class="text-danger">35 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" onclick="openRestaurant('Adil Hotel & Biryani')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500" class="card-img-top" height="220" alt="Biryani">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">Flat ₹50 OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">Adil Hotel & Biryani</h5>
+                    <span class="badge bg-success px-2 py-1">4.2 ★</span>
+                </div>
+                <p class="text-muted small mb-3">Mughlai, Hydrabadi Biryani</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹200 for one</span>
+                    <span class="text-danger">20 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col" onclick="openRestaurant('Top N Town Ice Cream')">
+        <div class="card h-100 border-0 shadow-sm restaurant-card">
+            <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" class="card-img-top" height="220" alt="Ice Cream">
+                <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">15% OFF</span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title fw-bold mb-0">Top N Town</h5>
+                    <span class="badge bg-success px-2 py-1">4.5 ★</span>
+                </div>
+                <p class="text-muted small mb-3">Ice Cream, Shakes, Desserts</p>
+                <hr class="text-muted opacity-25">
+                <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                    <span>₹120 for one</span>
+                    <span class="text-danger">12 mins</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col" onclick="openRestaurant('Pizza Hut')">
+    <div class="card h-100 border-0 shadow-sm restaurant-card">
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" class="card-img-top" height="220" alt="Pizza Hut">
+            <span class="position-absolute bottom-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-2 fw-bold small">40% OFF</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="card-title fw-bold mb-0">Pizza Hut</h5>
+                <span class="badge bg-success px-2 py-1">4.5 ★</span>
+            </div>
+            <p class="text-muted small mb-3">Pizza, Garlic Bread, Pasta</p>
+            <hr class="text-muted opacity-25">
+            <div class="d-flex justify-content-between text-secondary small fw-semibold">
+                <span>₹250 for one</span>
+                <span class="text-danger">25 mins</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+    </main>
+    
+    <script>
+    // Grabs location badge info from query params
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const city = urlParams.get('city') || 'Nearby';
+    document.getElementById('locationBadge').innerText = '📍 ${decodeURIComponent(city)}';
+
+    // Simple auto-checkout function to send selection details to your Servlet backend
+    function placeOrder(restaurantName, price) {
+        if(confirm("Do you want to confirm your order from " + restaurantName + " for ₹" + price + "?")) {
+            // Dynamically creates a hidden form background submission to trigger your OrderServlet
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'order'; // Calls your Java Servlet route
+
+            // Input field 1: Restaurant Name
+            const nameInput = document.createElement('input');
+            nameInput.type = 'hidden';
+            nameInput.name = 'restaurantName';
+            nameInput.value = restaurantName;
+            form.appendChild(nameInput);
+
+            // Input field 2: Item Price
+            const priceInput = document.createElement('input');
+            priceInput.type = 'hidden';
+            priceInput.name = 'orderAmount';
+            priceInput.value = price;
+            form.appendChild(priceInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+    function addToCart(name, price) {
+        let form = document.createElement('form');
+        form.action = 'cartAction';
+        form.method = 'POST';
+
+        form.innerHTML = `
+            <input type="hidden" name="itemName" value="${name}">
+            <input type="hidden" name="itemPrice" value="${price}">
+            <input type="hidden" name="quantity" value="1">
+        `;
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+    function openRestaurant(name) {
+        window.location.href = "menu.jsp?restaurant=" + encodeURIComponent(name);
+    }
+    function searchRestaurant() {
+
+        let input = document.getElementById("searchBox").value.toLowerCase();
+
+        let restaurants = document.querySelectorAll(".col");
+
+        restaurants.forEach(function(card){
+
+            let text = card.innerText.toLowerCase();
+
+            if(text.includes(input)){
+                card.style.display = "";
+            }else{
+                card.style.display = "none";
+            }
+
+        });
+
+    }
+    function openCategory(element){
+        let type = element.getAttribute("data-category");
+
+        window.location.href = "category.jsp?type=" + type;
+    }
+    
+    
+</script>
+
+    

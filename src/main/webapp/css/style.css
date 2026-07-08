@@ -1,0 +1,47 @@
+/* Custom styling for BiteBuddy branding */
+.italic-brand {
+    font-style: italic;
+    letter-spacing: -2px;
+    color: #ef4f5f; /* Clean food-brand red */
+}
+
+/* Background image overlay for the landing page hero section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600') no-repeat center center/cover;
+    height: 70vh;
+    min-height: 450px;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.search-container input:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Category item circles */
+.category-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Restaurant listing view cards */
+.restaurant-card {
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteBuddy - Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Full screen video scaling layout */
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .content { text-align: center; z-index: 10; }
+        .title { font-size: 80px; font-weight: 900; font-style: italic; margin-bottom: 5px; letter-spacing: -2px; }
+        .subtitle { font-size: 26px; margin-bottom: 35px; font-weight: 400; opacity: 0.9; }
+
+        /* Premium Dual-Pill Input Container */
+        .search-container {
+            background: white; padding: 8px 15px; border-radius: 12px;
+            display: flex; align-items: center; width: 700px; max-width: 90%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .loc-box {
+            display: flex; align-items: center; gap: 5px;
+            padding-right: 15px; border-right: 1px solid #ccc;
+        }
+        .loc-box input { border: none; outline: none; font-size: 15px; width: 140px; color: #333; }
+        .search-box { flex: 1; display: flex; align-items: center; padding-left: 15px; gap: 5px; }
+        .search-box input { width: 100%; border: none; outline: none; font-size: 15px; color: #333; }
+        
+        .search-btn {
+            background: #ff4757; color: white; border: none; padding: 12px 28px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .search-btn:hover { background: #e84118; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <video autoplay loop muted playsinline id="bg-video" poster="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000">
+    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+</video>
+        <div class="overlay"></div>
+
+        <div class="content">
+            <h1 class="title">ByteBuddy</h1>
+            <p class="subtitle">Discover the best food & drinks around you</p>
+            
+            <div class="search-container">
+                <div class="loc-box">
+                    📍 <input type="text" value="Bengaluru">
+                </div>
+                <div class="search-box">
+                    🔍 <input type="text" placeholder="Search for restaurants, cuisines or a dish...">
+                </div>
+                <button class="search-btn" onclick="window.location.href='restaurants.html'">Search</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
